@@ -1,0 +1,44 @@
+import { Artist } from "./kpopArtists.entities"
+import { MusicalGroup } from "./musicalGroup.entities"
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+
+@Entity("users")
+export class User{
+    @PrimaryGeneratedColumn("increment")
+    id: number
+
+    @Column({ type: "varchar", length: 20 })
+    name: string
+
+    @Column({ type: "varchar", length: 20, unique: true })
+    uniqueName: string
+
+    @Column({ type: "text" })
+    description: string
+
+    @Column({ type: "varchar", length: 50, unique: true })
+    email: string
+
+    @Column({ type: "varchar", length: 120 })
+    password: string
+
+    @Column({ type: "boolean", default: false })
+    admin: boolean
+
+    @CreateDateColumn({ type: "datetime" })
+    createdAt: Date
+
+    @UpdateDateColumn({ type: "datetime" })
+    updatedAt: Date
+
+    @DeleteDateColumn({ type: "datetime" })
+    deletedAt: Date
+
+    @ManyToMany(() => MusicalGroup)
+    @JoinTable()
+    favouriteMusicalGroups: MusicalGroup[]
+
+    @ManyToMany(() => Artist)
+    @JoinTable()
+    favouriteKpopArtists: Artist[]
+}
