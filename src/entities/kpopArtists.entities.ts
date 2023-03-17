@@ -1,4 +1,5 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
+import { MusicalGroup } from "./musicalGroup.entities"
 
 @Entity("kpop_artists")
 export class Artist{
@@ -31,4 +32,7 @@ export class Artist{
 
     @Column({ type: "decimal", precision: 2, scale: 2 })
     averagePoints: number
+
+    @ManyToOne(() => MusicalGroup, (musicalGroup) => musicalGroup.kpopArtists)
+    musicalGroup: MusicalGroup
 }
