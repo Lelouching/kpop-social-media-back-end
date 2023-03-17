@@ -1,5 +1,5 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
-import { MusicalGroup } from "./groupMusical.entities"
+import { MusicalGroup } from "./musicalGroup.entities"
 
 @Entity("kpop_artists")
 export class Artist{
