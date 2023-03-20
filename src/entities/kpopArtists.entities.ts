@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm"
 import { MusicalGroup } from "./musicalGroup.entities"
 
 @Entity("kpop_artists")
@@ -32,6 +32,12 @@ export class Artist{
 
     @Column({ type: "decimal", precision: 2, scale: 2 })
     averagePoints: number
+
+    @CreateDateColumn({ type: "datetime"})
+    createdAt: Date
+
+    @UpdateDateColumn({ type: "datetime" })
+    updatedAt: Date
 
     @ManyToOne(() => MusicalGroup, (musicalGroup) => musicalGroup.kpopArtists)
     musicalGroup: MusicalGroup
