@@ -13,8 +13,11 @@ export class User{
     @Column({ type: "varchar", length: 20, unique: true })
     uniqueName: string
 
-    @Column({ type: "text" })
-    description: string
+    @Column({ type: "varchar", length: 256, nullable: true, default: false })
+    image?: string | undefined | null
+
+    @Column({ type: "text", nullable: true, default: true })
+    description?: string | undefined | null
 
     @Column({ type: "varchar", length: 50, unique: true })
     email: string
