@@ -16,10 +16,10 @@ export class MusicalGroup{
     membersQuantity: number
 
     @CreateDateColumn({ type: "datetime"})
-    createdAt: Date
+    createdAt: string
 
     @UpdateDateColumn({ type: "datetime" })
-    updatedAt: Date
+    updatedAt: string
 
     @OneToMany(() => Artist, (artist) => artist.musicalGroup)
     kpopArtists: Artist[]

@@ -29,13 +29,13 @@ export class User{
     admin: boolean
 
     @CreateDateColumn({ type: "datetime" })
-    createdAt: Date
+    createdAt: string
 
     @UpdateDateColumn({ type: "datetime" })
-    updatedAt: Date
+    updatedAt: string
 
     @DeleteDateColumn({ type: "datetime" })
-    deletedAt: Date
+    deletedAt: string
 
     @ManyToMany(() => MusicalGroup)
     @JoinTable()

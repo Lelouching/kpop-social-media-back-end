@@ -34,10 +34,10 @@ export class Artist{
     averagePoints: number
 
     @CreateDateColumn({ type: "datetime"})
-    createdAt: Date
+    createdAt: string
 
     @UpdateDateColumn({ type: "datetime" })
-    updatedAt: Date
+    updatedAt: string
 
     @ManyToOne(() => MusicalGroup, (musicalGroup) => musicalGroup.kpopArtists)
     musicalGroup: MusicalGroup
