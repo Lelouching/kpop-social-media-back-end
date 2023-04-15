@@ -1,17 +1,18 @@
+import { getRounds, hashSync } from "bcryptjs";
 import { Artist } from "./kpopArtists.entities"
 import { MusicalGroup } from "./musicalGroup.entities"
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { BeforeInsert, BeforeUpdate, Column, CreateDateColumn, DeleteDateColumn, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity("users")
 export class User{
     @PrimaryGeneratedColumn("increment")
     id: number
 
-    @Column({ type: "varchar", length: 20 })
+    @Column({ type: "varchar", length: 25 })
     name: string
 
     @Column({ type: "varchar", length: 20, unique: true })
-    uniqueName: string
+    username: string
 
     @Column({ type: "varchar", length: 256, nullable: true, default: null })
     image?: string | undefined | null
@@ -28,13 +29,13 @@ export class User{
     @Column({ type: "boolean", default: false })
     admin: boolean
 
-    @CreateDateColumn({ type: "datetime" })
+    @CreateDateColumn()
     createdAt: string
 
-    @UpdateDateColumn({ type: "datetime" })
+    @UpdateDateColumn()
     updatedAt: string
 
-    @DeleteDateColumn({ type: "datetime" })
+    @DeleteDateColumn()
     deletedAt: string
 
     @ManyToMany(() => MusicalGroup)
@@ -44,4 +45,14 @@ export class User{
     @ManyToMany(() => Artist)
     @JoinTable()
     favouriteKpopArtists: Artist[]
+
+    @BeforeInsert()
+    @BeforeUpdate()
+    hashPassword(){
+        const rounds = getRounds(this.password)
+        
+        if(rounds === 0){
+            this.password = hashSync(this.password, 10)
+        }
+    }
 }

@@ -15,10 +15,10 @@ export class MusicalGroup{
     @Column({ type: "integer" })
     membersQuantity: number
 
-    @CreateDateColumn({ type: "datetime"})
+    @CreateDateColumn()
     createdAt: string
 
-    @UpdateDateColumn({ type: "datetime" })
+    @UpdateDateColumn()
     updatedAt: string
 
     @OneToMany(() => Artist, (artist) => artist.musicalGroup)
