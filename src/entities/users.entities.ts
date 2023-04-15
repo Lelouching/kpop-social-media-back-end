@@ -49,10 +49,6 @@ export class User{
     @BeforeInsert()
     @BeforeUpdate()
     hashPassword(){
-        const rounds = getRounds(this.password)
-        
-        if(rounds === 0){
-            this.password = hashSync(this.password, 10)
-        }
+        this.password = hashSync(this.password, 10)
     }
 }
