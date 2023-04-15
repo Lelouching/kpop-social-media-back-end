@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm"
+import { BeforeInsert, BeforeUpdate, Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm"
 import { MusicalGroup } from "./musicalGroup.entities"
 
 @Entity("kpop_artists")
@@ -41,4 +41,13 @@ export class Artist{
 
     @ManyToOne(() => MusicalGroup, (musicalGroup) => musicalGroup.kpopArtists)
     musicalGroup: MusicalGroup
+
+    @BeforeInsert()
+    @BeforeUpdate()
+    averageArtistPoints(){
+        const sumPoints: number = this.vocal + this.dance + 
+        this.standardKorean + this.popularity + this.rap + this.stagePresence
+
+        this.averagePoints = parseFloat((sumPoints / 6).toFixed(2))
+    }
 }
