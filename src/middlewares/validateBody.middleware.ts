@@ -1,9 +1,8 @@
-import { Request, Response, NextFunction } from "express";
-import { ZodTypeAny } from "zod";
-import { iUserCreate } from "../interfaces/users.interface";
+import { Request, Response, NextFunction } from "express"
+import { ZodAny, ZodTypeAny } from "zod"
 
 export const validateBodyMiddleware = (schema: ZodTypeAny) => (req: Request, res: Response, next: NextFunction): void | Response => {
-    const validateData: iUserCreate = schema.parse(req.body)
+    const validateData: any = schema.parse(req.body)
 
     req.body = validateData
 

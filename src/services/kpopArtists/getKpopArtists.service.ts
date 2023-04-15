@@ -34,7 +34,7 @@ export const getKpopArtistsService = async (pageQuery: number, perPageQuery: num
 
     return {
         previous: page - 2 < 0 ? null : `http://localhost:3000/kpopArtists?page${page - 2}&perPage${perPage}`,
-        next: kpopArtistNextPage.length === 0 ? null : `http://localhost:3000/kpopArtists?page${page}&perpPage${perPage}`,
+        next: !kpopArtistNextPage.length ? null : `http://localhost:3000/kpopArtists?page${page}&perpPage${perPage}`,
         count: countKpopArtist.length,
         data: kpopArtists
     }
