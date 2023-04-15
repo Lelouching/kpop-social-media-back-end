@@ -9,6 +9,7 @@ export const getUserByUsernameService = async (username: string): Promise<iUserI
 
     const user: User | null = await userRepo.createQueryBuilder().
     where("LOWER(username) = :username", { username: username.toLowerCase() }).
+    withDeleted().
     getOne()
 
     if(!user) return null

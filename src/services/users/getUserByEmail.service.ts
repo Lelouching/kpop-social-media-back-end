@@ -8,8 +8,9 @@ export const getUserByEmailService = async (userEmail: string): Promise<iUserInf
     const userRepo: Repository<User> = AppDataSource.getRepository(User)
 
     const user: User | null = await userRepo.createQueryBuilder().
-    where("LOWER(email) = :email", { email: userEmail.toLowerCase() })
-    .getOne()
+    where("LOWER(email) = :email", { email: userEmail.toLowerCase() }).
+    withDeleted().
+    getOne()
 
     if(!user) return null
 
