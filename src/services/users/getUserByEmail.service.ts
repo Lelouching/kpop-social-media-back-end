@@ -7,9 +7,9 @@ import { userInfoSchema } from "../../schemas/users.schema";
 export const getUserByEmailService = async (userEmail: string): Promise<iUserInfo | null> => {
     const userRepo: Repository<User> = AppDataSource.getRepository(User)
 
-    const user: User | null = await userRepo.findOneBy({
-        email: userEmail
-    })
+    const user: User | null = await userRepo.createQueryBuilder().
+    where("LOWER(email) = :email", { email: userEmail.toLowerCase() })
+    .getOne()
 
     if(!user) return null
 

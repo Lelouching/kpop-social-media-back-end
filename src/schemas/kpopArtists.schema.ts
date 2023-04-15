@@ -8,7 +8,8 @@ export const kpopArtistCreateSchema = z.object({
     standardKorean: z.number().positive().max(10),
     popularity: z.number().positive().max(10),
     rap: z.number().positive().max(10),
-    stagePresence: z.number().positive().max(10)
+    stagePresence: z.number().positive().max(10),
+    musicalGroup: z.string().max(50)
 })
 
 export const kpopArtistInfoSchema = kpopArtistCreateSchema.extend({
