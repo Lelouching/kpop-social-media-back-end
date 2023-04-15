@@ -5,5 +5,5 @@ import { createMusicaGroupService } from "../services/musicalGroup/createMusical
 export const createMusicalGroupController = async (req: Request, res: Response): Promise<Response> => {
     const musicalGroup: MusicalGroup = await createMusicaGroupService(req.body)
     
-    return res.status(200).json(musicalGroup)
+    return res.status(201).json(musicalGroup)
 }
