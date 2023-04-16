@@ -9,6 +9,9 @@ export class Artist{
     @Column({ type: "varchar", length: 20 })
     name: string
 
+    @Column({ type: "text", nullable: true, default: null })
+    description?: string | undefined | null
+
     @Column({ type: "varchar", length: 256 })
     image: string
 

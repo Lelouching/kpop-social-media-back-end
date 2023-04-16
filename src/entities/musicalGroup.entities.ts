@@ -21,6 +21,6 @@ export class MusicalGroup{
     @UpdateDateColumn()
     updatedAt: string
 
-    @OneToMany(() => Artist, (artist) => artist.musicalGroup)
+    @OneToMany(() => Artist, (artist) => artist.musicalGroup, { nullable: true })
     kpopArtists: Artist[]
 }
