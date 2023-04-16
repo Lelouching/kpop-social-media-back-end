@@ -8,12 +8,12 @@ export const userCreateSchema = z.object({
     image: z.string().max(256).nullish(),
     description: z.string().nullish(),
     email: z.string().max(50),
-    password: z.string().max(120)
+    password: z.string().max(120),
+    admin: z.boolean().optional().default(false)
 })
 
 export const userInfoSchema = userCreateSchema.extend({
     id: z.number(),
-    admin: z.boolean(),
     createdAt: z.date(),
     updatedAt: z.date(),
     deletedAt: z.date().nullable(),
