@@ -38,11 +38,11 @@ export class User{
     @DeleteDateColumn()
     deletedAt: string
 
-    @ManyToMany(() => MusicalGroup)
+    @ManyToMany(() => MusicalGroup, { nullable: true })
     @JoinTable()
     favouriteMusicalGroups: MusicalGroup[]
 
-    @ManyToMany(() => Artist)
+    @ManyToMany(() => Artist, { nullable: true })
     @JoinTable()
     favouriteKpopArtists: Artist[]
 

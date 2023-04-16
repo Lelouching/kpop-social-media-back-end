@@ -2,6 +2,7 @@ import { z } from "zod";
 
 export const kpopArtistCreateSchema = z.object({
     name: z.string().max(20),
+    description: z.string().max(350).nullish(),
     image: z.string().max(256),
     vocal: z.number().positive().max(10),
     dance: z.number().positive().max(10),
@@ -14,7 +15,7 @@ export const kpopArtistCreateSchema = z.object({
 
 export const kpopArtistInfoSchema = kpopArtistCreateSchema.extend({
     id: z.number(),
-    createdAt: z.string(),
-    updatedAt: z.string(),
+    createdAt: z.date(),
+    updatedAt: z.date(),
     avaragePoints: z.number().positive().max(10)
 })
