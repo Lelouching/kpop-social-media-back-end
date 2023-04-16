@@ -11,7 +11,8 @@ export const createKpopArtistController = async (req: Request, res: Response): P
 }
 
 export const getKpopArtistsController = async (req: Request, res: Response): Promise<Response> => {
-    const kpopArtists: iKpopArtistList = await getKpopArtistsService(Number(req.query.page), Number(req.query.perPage))
+    const kpopArtists: iKpopArtistList = await getKpopArtistsService(Number(req.query.page), 
+    Number(req.query.perPage), String(req.query.order), String(req.query.sort))
 
     return res.status(200).json(kpopArtists)
 }

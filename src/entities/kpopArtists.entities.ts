@@ -39,7 +39,7 @@ export class Artist{
     @UpdateDateColumn()
     updatedAt: string
 
-    @ManyToOne(() => MusicalGroup, (musicalGroup) => musicalGroup.kpopArtists)
+    @ManyToOne(() => MusicalGroup, (musicalGroup) => musicalGroup.kpopArtists, { onDelete: "CASCADE" })
     musicalGroup: MusicalGroup
 
     @BeforeInsert()
