@@ -2,6 +2,7 @@ import { z } from "zod"
 
 export const musicalGroupCreateSchema = z.object({
     name: z.string().max(50),
+    image: z.string().max(256),
     description: z.string().max(350),
     membersQuantity: z.number().positive().int()
 })
