@@ -9,6 +9,9 @@ export class MusicalGroup{
     @Column({ type: "varchar", length: 50, unique: true })
     name: string
 
+    @Column({ type: "varchar", length: 256 })
+    image: string
+
     @Column({ type: "text"})
     description: string
 
