@@ -12,6 +12,6 @@ app.use(express.json())
 app.use("/users", userRouter)
 app.use("/login", loginRouter)
 app.use("/kpopArtists", kpopArtistsRouter)
-app.use("/musicalGroup", musicalGroupRouter)
+app.use("/musicalGroups", musicalGroupRouter)
 
 app.use(handleErrors)
