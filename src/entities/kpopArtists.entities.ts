@@ -1,4 +1,4 @@
-import { BeforeInsert, BeforeUpdate, Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm"
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm"
 import { MusicalGroup } from "./musicalGroup.entities"
 
 @Entity("kpop_artists")
@@ -15,26 +15,23 @@ export class Artist{
     @Column({ type: "varchar", length: 256 })
     image: string
 
-    @Column({ type: "decimal", precision: 2, scale: 2 })
+    @Column({ type: "integer" })
     vocal: number
 
-    @Column({ type: "decimal", precision: 2, scale: 2 })
+    @Column({ type: "integer" })
     dance: number
 
-    @Column({ type: "decimal", precision: 2, scale: 2 })
+    @Column({ type: "integer" })
     standardKorean: number
 
-    @Column({ type: "decimal", precision: 2, scale: 2 })
+    @Column({ type: "integer" })
     popularity: number
 
-    @Column({ type: "decimal", precision: 2, scale: 2 })
+    @Column({ type: "integer" })
     rap: number
 
-    @Column({ type: "decimal", precision: 2, scale: 2 })
+    @Column({ type: "integer" })
     stagePresence: number
-
-    @Column({ type: "decimal", precision: 2, scale: 2 })
-    averagePoints: number
 
     @CreateDateColumn()
     createdAt: string
@@ -44,13 +41,4 @@ export class Artist{
 
     @ManyToOne(() => MusicalGroup, (musicalGroup) => musicalGroup.kpopArtists, { onDelete: "CASCADE" })
     musicalGroup: MusicalGroup
-
-    @BeforeInsert()
-    @BeforeUpdate()
-    averageArtistPoints(){
-        const sumPoints: number = this.vocal + this.dance + 
-        this.standardKorean + this.popularity + this.rap + this.stagePresence
-
-        this.averagePoints = parseFloat((sumPoints / 6).toFixed(2))
-    }
 }
