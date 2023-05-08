@@ -11,7 +11,8 @@ export const createMusicalGroupController = async (req: Request, res: Response):
 }
 
 export const getMusicalGroupsController = async (req: Request, res: Response): Promise<Response> => {
-    const musicalGroups: iMusicalGroupList = await getMusicalGroupsService(Number(req.query.page), Number(req.query.perPage))
+    const musicalGroups: iMusicalGroupList = await getMusicalGroupsService(Number(req.query.page), Number(req.query.perPage), 
+    String(req.query.order), String(req.query.sort))
 
     return res.status(200).json(musicalGroups)
 }
