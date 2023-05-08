@@ -5,7 +5,8 @@ declare global{
     namespace Express{
         interface Request{
             musicalGroup: MusicalGroup,
-            userToken: iUserRequestInfo
+            userToken: iUserRequestInfo,
+            userId: iUserRequestInfo
         }
     }
 }
