@@ -3,7 +3,7 @@ import { iMusicalGroupList } from "../../interfaces/musicalGroup.interface";
 import { MusicalGroup } from "../../entities/musicalGroup.entities";
 import { AppDataSource } from "../../data-source";
 
-export const getMusicalGroupsService = async (pageQuery: number, perPageQuery: number): Promise<iMusicalGroupList> => {
+export const getMusicalGroupsService = async (pageQuery: number, perPageQuery: number, orderQuery: string, sortQuery: string): Promise<iMusicalGroupList> => {
     const musicalGroupRepo: Repository<MusicalGroup> = AppDataSource.getRepository(MusicalGroup)
 
     let page = pageQuery || 1
@@ -17,10 +17,23 @@ export const getMusicalGroupsService = async (pageQuery: number, perPageQuery: n
         perPage = 5
     }
 
+    let order: string = orderQuery || "desc"
+
+    const requiredOrderString: string[] = ["asc", "desc"]
+
+    if(!requiredOrderString.includes(order)){
+        order = "desc"
+    }
+
+    const ordenation: any = {
+        membersQuantity: order
+    }
+
     const musicalGroups: MusicalGroup[] = await musicalGroupRepo.find({
         relations: {
             kpopArtists: true
         },
+        order: ordenation,
         skip: perPage * (page - 1),
         take: perPage
     })
