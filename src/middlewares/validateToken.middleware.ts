@@ -17,7 +17,7 @@ export const validateTokenMiddleware = (req: Request, res: Response, next: NextF
         token,
         String(process.env.SECRET_KEY),
         (error: any, decoded: any): void | Response => {
-            if(error){
+            if(error || decoded.code){
                 return res.status(401).json({
                     message: error.message
                 })
