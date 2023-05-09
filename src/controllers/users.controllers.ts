@@ -16,3 +16,9 @@ export const deleteUserController = async (req: Request, res: Response): Promise
 
     return res.status(204).send()
 }
+
+export const getUserByIdController = async (req: Request, res: Response): Promise<Response> => {
+    const user: iUserInfo = req.userId
+
+    return res.status(200).json(user)
+}
