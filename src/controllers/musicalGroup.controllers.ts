@@ -24,3 +24,9 @@ export const deleteMusicalGroupController = async (req: Request, res: Response):
 
     return res.status(204).send()
 }
+
+export const getMusicalGroupByIdController = async (req: Request, res: Response): Promise<Response> => {
+    const musicalGroup: MusicalGroup = req.musicalGroup
+
+    return res.status(200).json(musicalGroup)
+}
