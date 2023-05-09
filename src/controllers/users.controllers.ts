@@ -1,3 +1,4 @@
+import { recoverUserService } from "./../services/users/recoverUser.service"
 import { Request, Response } from "express"
 import { iUserInfo } from "../interfaces/users.interface"
 import { createUserService } from "../services/users/createUser.service"
@@ -11,8 +12,9 @@ export const createUserController = async (req: Request, res: Response): Promise
 
 export const deleteUserController = async (req: Request, res: Response): Promise<Response> => {
     const userId: number = Number(req.params.id)
+    const user: iUserInfo = req.userId
 
-    await softDeleteUserService(userId)
+    await softDeleteUserService(userId, user)
 
     return res.status(204).send()
 }
@@ -21,4 +23,13 @@ export const getUserByIdController = async (req: Request, res: Response): Promis
     const user: iUserInfo = req.userId
 
     return res.status(200).json(user)
+}
+
+export const recoverUserByIdController = async (req: Request, res: Response): Promise<Response> => {
+    const userId: number = Number(req.params.id)
+    const user: iUserInfo = req.userId
+
+    await recoverUserService(userId, user)
+
+    return res.status(204).send()
 }
