@@ -1,4 +1,4 @@
-import { createKpopArtistController, deleteKpopArtistsController, getKpopArtistsController } from "../controllers/kpopArtists.controllers"
+import { createKpopArtistController, deleteKpopArtistsController, getKpopArtistByIdController, getKpopArtistsController } from "../controllers/kpopArtists.controllers"
 import { ifIsAdminMiddleware } from "../middlewares/ifIsAdmin.middleware"
 import { ifKpopArtistExistsMiddleware } from "../middlewares/ifKpopArtistExists.middleware"
 import { ifMusicalGroupExistsMiddleware } from "../middlewares/ifMusicalGroupExists.middleware"
@@ -13,3 +13,4 @@ kpopArtistsRouter.post("", validateBodyMiddleware(kpopArtistCreateSchema), valid
 ifIsAdminMiddleware, ifMusicalGroupExistsMiddleware, createKpopArtistController)
 kpopArtistsRouter.get("", getKpopArtistsController)
 kpopArtistsRouter.delete("/:id", validateTokenMiddleware, ifKpopArtistExistsMiddleware, ifIsAdminMiddleware, deleteKpopArtistsController)
+kpopArtistsRouter.get("/:id", ifKpopArtistExistsMiddleware, getKpopArtistByIdController)

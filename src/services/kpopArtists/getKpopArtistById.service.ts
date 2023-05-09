@@ -16,5 +16,13 @@ export const getKpopArtistByIdService = async (kpopArtistId: number): Promise<Ar
         }
     })
 
+    if(kpopArtist){
+        kpopArtist.musicalGroup.kpopArtists.forEach((artist: Artist, index: number) => {
+            if(artist.id === kpopArtist.id){
+                kpopArtist.musicalGroup.kpopArtists.splice(index, 1)
+            }
+        })
+    }
+
     return kpopArtist
 }

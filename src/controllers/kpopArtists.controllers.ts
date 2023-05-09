@@ -24,3 +24,9 @@ export const deleteKpopArtistsController = async (req: Request, res: Response): 
 
     return res.status(204).send()
 }
+
+export const getKpopArtistByIdController = async (req: Request, res: Response): Promise<Response> => {
+    const kpopArtist: Artist = req.kpopArtist
+
+    return res.status(200).json(kpopArtist)
+}
