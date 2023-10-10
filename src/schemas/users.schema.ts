@@ -20,3 +20,7 @@ export const userInfoSchema = userCreateSchema.extend({
     favouriteMusicalGroups: musicalGroupInfoSchema.array().default([]),
     favouriteKpopArtists: kpopArtistInfoSchema.array().default([])
 }).omit({ password: true })
+
+export const userUpdateSchema = userCreateSchema.partial()
+
+export const userUpdateReturnSchema = userInfoSchema.omit({ favouriteKpopArtists: true, favouriteMusicalGroups: true })
